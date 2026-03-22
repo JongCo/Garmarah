@@ -73,3 +73,5 @@ ExportedObj/
 ehthumbs.db
 Thumbs.db
 Desktop.ini
+.claude/*
+.vscode/*
