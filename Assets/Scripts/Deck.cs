@@ -6,7 +6,15 @@ public class Deck : MonoBehaviour
     [SerializeField] private HwatooData[] hwatooDataArray;
     [SerializeField] private Hwatoo hwatooPrefab;
 
+    /// <summary>
+    /// Deck에 있는 카드들을 나타내는 리스트입니다. 리스트의 0번째 요소가 가장 아래에 있는 카드입니다.
+    /// </summary>
     private readonly List<Hwatoo> cards = new();
+
+    void Start()
+    {
+        BoardManager.instance.SetDeck(this);
+    }
 
     public void CreateHwatooOnDeck()
     {
@@ -34,5 +42,14 @@ public class Deck : MonoBehaviour
             cards[i].zIndex = i;
             cards[i].PlayShuffleAnimation();
         }
+    }
+
+    public Hwatoo Draw()
+    {
+        if (cards.Count == 0) return null;
+
+        Hwatoo top = cards[^1];
+        cards.RemoveAt(cards.Count - 1);
+        return top;
     }
 }

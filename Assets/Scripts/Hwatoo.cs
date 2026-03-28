@@ -35,7 +35,7 @@ public class Hwatoo : MonoBehaviour
         
     }
 
-    public void MoveTo(Vector3 targetPosition)
+    public void MoveTo(Vector2 targetPosition)
     {
         if (moveAnimationCoroutine != null) StopCoroutine(moveAnimationCoroutine);
 
