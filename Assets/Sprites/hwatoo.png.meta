@@ -1,0 +1,1228 @@
+fileFormatVersion: 2
+guid: ab3420c32171da7d09941f447b766031
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3718456719496868180
+    second: hwatoo_0
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: hwatoo_0
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 1524
+        width: 145
+        height: 228
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45176466fac9a9330800000000000000
+      internalID: 3718456719496868180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hwatoo_1
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 1525
+        width: 145
+        height: 228
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2420fc40c449d422eb2a5e5b818737ad
+      internalID: 1613747256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hwatoo_2
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 1524
+        width: 145
+        height: 228
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60ca2d6a463a378e6881f1075ad1de13
+      internalID: 692753649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hwatoo_3
+      rect:
+        serializedVersion: 2
+        x: 677
+        y: 1524
+        width: 145
+        height: 228
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2053c6208aed17778a7262ffc1d0f76a
+      internalID: 1893864742
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hwatoo_4
+      rect:
+        serializedVersion: 2
+        x: 940
+        y: 1523
+        width: 145
+        height: 228
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f8f8d5c97af5ac32a78672fd536f3ca
+      internalID: 951158594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hwatoo_5
+      rect:
+        serializedVersion: 2
+        x: 1154
+        y: 1519
+        width: 145
+        height: 228
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 671322ea9f0674db4a9a84bfb981a3ca
+      internalID: 1328452712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hwatoo_6
+      rect:
+        serializedVersion: 2
+        x: 1362
+        y: 1521
+        width: 145
+        height: 228
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be52c231fdfcae59f85555b2efe67d75
+      internalID: 728881421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hwatoo_7
+      rect:
+        serializedVersion: 2
+        x: 1578
+        y: 1522
+        width: 145
+        height: 228
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29a16a52ecdb1f6e2b77b87636547cb8
+      internalID: -47653427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hwatoo_8
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 1232
+        width: 145
+        height: 228
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30ca0ae94dd64d5fbb0acd9ce7801887
+      internalID: -1335524222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hwatoo_9
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 1233
+        width: 145
+        height: 228
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d37ad3ebb81635be99a5c990a08779e
+      internalID: -1086681096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hwatoo_10
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 1232
+        width: 145
+        height: 228
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce26309d7ba45fcdea58cc8675a7bed3
+      internalID: -545861958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hwatoo_11
+      rect:
+        serializedVersion: 2
+        x: 679
+        y: 1232
+        width: 145
+        height: 228
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40b6d3ff6a62be980852005853ecf53e
+      internalID: 1945942231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hwatoo_12
+      rect:
+        serializedVersion: 2
+        x: 938
+        y: 1234
+        width: 145
+        height: 228
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11cfe27f44a202725832c83a7af7fbeb
+      internalID: 1846636519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hwatoo_13
+      rect:
+        serializedVersion: 2
+        x: 1153
+        y: 1233
+        width: 145
+        height: 228
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 512d1fe358da5a81f9537fad1ab20ff9
+      internalID: 797751550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hwatoo_14
+      rect:
+        serializedVersion: 2
+        x: 1361
+        y: 1235
+        width: 145
+        height: 228
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 033212f24da6dda1d9bf1e973ea72576
+      internalID: 1062158166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hwatoo_15
+      rect:
+        serializedVersion: 2
+        x: 1573
+        y: 1234
+        width: 145
+        height: 228
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9dec414da4a630b5aa9b76cba56a023
+      internalID: -1514498059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hwatoo_16
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 937
+        width: 145
+        height: 228
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4e7c041da3aa11199fbcab0a34aaea6
+      internalID: -939757773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hwatoo_17
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 936
+        width: 145
+        height: 228
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c31436d16fe80a9dca0bc97b1d918688
+      internalID: -1328353193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hwatoo_18
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 937
+        width: 145
+        height: 228
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 143c50f896b3f02549ef2400cd9cc28c
+      internalID: 1346531356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hwatoo_19
+      rect:
+        serializedVersion: 2
+        x: 677
+        y: 937
+        width: 145
+        height: 228
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35402996b7ead624cbe4cc550bf000bf
+      internalID: 977343696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hwatoo_20
+      rect:
+        serializedVersion: 2
+        x: 938
+        y: 937
+        width: 145
+        height: 228
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1c39420b54587d26a444fa17c5b271e
+      internalID: -1066313359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hwatoo_21
+      rect:
+        serializedVersion: 2
+        x: 1153
+        y: 934
+        width: 145
+        height: 228
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 234c09aa7b785a5419a2ccdf22464698
+      internalID: 427884106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hwatoo_22
+      rect:
+        serializedVersion: 2
+        x: 1360
+        y: 937
+        width: 145
+        height: 228
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86099f5af53280ccda20e005af931eaf
+      internalID: -1207618124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hwatoo_23
+      rect:
+        serializedVersion: 2
+        x: 1573
+        y: 936
+        width: 145
+        height: 228
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1c82f394e75d6e1ea5265e3735eb8dc
+      internalID: 1392629363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hwatoo_24
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 643
+        width: 145
+        height: 228
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e21e1ac43ea8beb8959e413b1c6e73a
+      internalID: -964864701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hwatoo_25
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 643
+        width: 145
+        height: 228
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a3cdc991a71f72e3aabed7a7b40097f
+      internalID: 304619899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hwatoo_26
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 643
+        width: 145
+        height: 228
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43917b00c94cf6a109c64384d9c66ff3
+      internalID: -1236013515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hwatoo_27
+      rect:
+        serializedVersion: 2
+        x: 678
+        y: 644
+        width: 145
+        height: 228
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eeca03780b3df13efa374a802a46ab48
+      internalID: 422431727
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hwatoo_28
+      rect:
+        serializedVersion: 2
+        x: 942
+        y: 643
+        width: 145
+        height: 228
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70fffe6893e307b93bf1260b922eaa7e
+      internalID: -1788925028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hwatoo_29
+      rect:
+        serializedVersion: 2
+        x: 1153
+        y: 645
+        width: 145
+        height: 228
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1e244e1b1a5fd404b042e4abe549e41
+      internalID: 768559448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hwatoo_30
+      rect:
+        serializedVersion: 2
+        x: 1361
+        y: 645
+        width: 145
+        height: 228
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4adb2eb21453315d7ba2043696df8dd3
+      internalID: 2044434311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hwatoo_31
+      rect:
+        serializedVersion: 2
+        x: 1573
+        y: 645
+        width: 145
+        height: 228
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be869e30aecec1f4ca0696d2d13e0a7d
+      internalID: -1665548652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hwatoo_32
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 357
+        width: 145
+        height: 228
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 237664f9c83b597329fd991573661f18
+      internalID: 1347921435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hwatoo_33
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 356
+        width: 145
+        height: 228
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ccef22d273121b7bc991f482c7205822
+      internalID: -1611169493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hwatoo_34
+      rect:
+        serializedVersion: 2
+        x: 469
+        y: 356
+        width: 145
+        height: 228
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7c4b681dde6de625a01e367c3a62ac7
+      internalID: -1803392082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hwatoo_35
+      rect:
+        serializedVersion: 2
+        x: 678
+        y: 356
+        width: 145
+        height: 228
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a61d8ee3cebce3376904505f0c7299a9
+      internalID: 1750817248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hwatoo_36
+      rect:
+        serializedVersion: 2
+        x: 939
+        y: 358
+        width: 145
+        height: 228
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 876d282ef60066765affab8b5586e4be
+      internalID: 1643274755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hwatoo_37
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 357
+        width: 145
+        height: 228
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2525b8f14bc49b84195d19726bd150fb
+      internalID: 835734685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hwatoo_38
+      rect:
+        serializedVersion: 2
+        x: 1363
+        y: 359
+        width: 145
+        height: 228
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c1d95af5def70879939191d07ccee64
+      internalID: -1264863426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hwatoo_39
+      rect:
+        serializedVersion: 2
+        x: 1574
+        y: 358
+        width: 145
+        height: 228
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a82fd02784b5bb53dbd0de86cd1c0585
+      internalID: 1450774831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hwatoo_40
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 71
+        width: 145
+        height: 228
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef1f4d547138a5aa481f8daa2eb98547
+      internalID: -1333876601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hwatoo_41
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 71
+        width: 145
+        height: 228
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69fc1e69664add8e8aa32e58d3625d53
+      internalID: -1627354803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hwatoo_42
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 72
+        width: 145
+        height: 228
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e62c0dda62dbb28a1b7ea8c33dac2f0a
+      internalID: -498531298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hwatoo_43
+      rect:
+        serializedVersion: 2
+        x: 678
+        y: 70
+        width: 145
+        height: 228
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11faa1b89d1fd2e728621f51df2d3632
+      internalID: 1691360067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hwatoo_44
+      rect:
+        serializedVersion: 2
+        x: 940
+        y: 70
+        width: 145
+        height: 228
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a39f5d7ce60dec658af6b0f45a2f7dc
+      internalID: -567678718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hwatoo_45
+      rect:
+        serializedVersion: 2
+        x: 1153
+        y: 69
+        width: 145
+        height: 228
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7fa5c3c4affe2e841b657cf0790fedb3
+      internalID: 526633739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hwatoo_46
+      rect:
+        serializedVersion: 2
+        x: 1364
+        y: 70
+        width: 145
+        height: 228
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9fefb959f8e495acbabfe1ff796f8833
+      internalID: 637089122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hwatoo_47
+      rect:
+        serializedVersion: 2
+        x: 1573
+        y: 71
+        width: 145
+        height: 228
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92aaea975aeb3897d91d8417d6da0050
+      internalID: -19601692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 81bded8483151c390b71c4c487eea39c
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":8.0,"y":6.0},"gridSpriteSize":{"x":221.0,"y":302.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+      - key: SpriteEditor.SliceOnImport
+        value: False
+    nameFileIdTable:
+      hwatoo_0: 3718456719496868180
+      hwatoo_1: 1613747256
+      hwatoo_10: -545861958
+      hwatoo_11: 1945942231
+      hwatoo_12: 1846636519
+      hwatoo_13: 797751550
+      hwatoo_14: 1062158166
+      hwatoo_15: -1514498059
+      hwatoo_16: -939757773
+      hwatoo_17: -1328353193
+      hwatoo_18: 1346531356
+      hwatoo_19: 977343696
+      hwatoo_2: 692753649
+      hwatoo_20: -1066313359
+      hwatoo_21: 427884106
+      hwatoo_22: -1207618124
+      hwatoo_23: 1392629363
+      hwatoo_24: -964864701
+      hwatoo_25: 304619899
+      hwatoo_26: -1236013515
+      hwatoo_27: 422431727
+      hwatoo_28: -1788925028
+      hwatoo_29: 768559448
+      hwatoo_3: 1893864742
+      hwatoo_30: 2044434311
+      hwatoo_31: -1665548652
+      hwatoo_32: 1347921435
+      hwatoo_33: -1611169493
+      hwatoo_34: -1803392082
+      hwatoo_35: 1750817248
+      hwatoo_36: 1643274755
+      hwatoo_37: 835734685
+      hwatoo_38: -1264863426
+      hwatoo_39: 1450774831
+      hwatoo_4: 951158594
+      hwatoo_40: -1333876601
+      hwatoo_41: -1627354803
+      hwatoo_42: -498531298
+      hwatoo_43: 1691360067
+      hwatoo_44: -567678718
+      hwatoo_45: 526633739
+      hwatoo_46: 637089122
+      hwatoo_47: -19601692
+      hwatoo_5: 1328452712
+      hwatoo_6: 728881421
+      hwatoo_7: -47653427
+      hwatoo_8: -1335524222
+      hwatoo_9: -1086681096
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

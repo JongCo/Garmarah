@@ -16,4 +16,4 @@ MonoBehaviour:
   cardType: 1
   danType: 0
   cardName: Heukssari
-  sprite: {fileID: 0}
+  sprite: {fileID: -964864701, guid: ab3420c32171da7d09941f447b766031, type: 3}

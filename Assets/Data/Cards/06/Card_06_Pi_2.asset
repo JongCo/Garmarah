@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9121f44d1590d6786817d9e93d2ab715, type: 3}
   m_Name: Card_06_Pi_2
   m_EditorClassIdentifier: Assembly-CSharp::HwatooData
-  month: 0
-  cardType: 0
+  month: 6
+  cardType: 3
   danType: 0
-  cardName: 
-  sprite: {fileID: 0}
+  cardName: Pi_2
+  sprite: {fileID: 1691360067, guid: ab3420c32171da7d09941f447b766031, type: 3}

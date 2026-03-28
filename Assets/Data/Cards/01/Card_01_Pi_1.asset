@@ -16,4 +16,4 @@ MonoBehaviour:
   cardType: 3
   danType: 0
   cardName: Pi 1
-  sprite: {fileID: 0}
+  sprite: {fileID: 692753649, guid: ab3420c32171da7d09941f447b766031, type: 3}

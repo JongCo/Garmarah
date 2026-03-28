@@ -16,4 +16,4 @@ MonoBehaviour:
   cardType: 1
   danType: 0
   cardName: Danpung
-  sprite: {fileID: 0}
+  sprite: {fileID: -1788925028, guid: ab3420c32171da7d09941f447b766031, type: 3}
