@@ -27,7 +27,20 @@ public class Player : MonoBehaviour
 
     public void AddHwatooToHand(Hwatoo hwatoo) {
         hwatooOnHand.Add(hwatoo);
-        hwatoo.MoveTo((Vector2) transform.position + Vector2.right * hwatooOnHand.Count);
+        SortHwatooInHandByMonth();
+        // hwatoo.MoveTo((Vector2) transform.position + Vector2.right * hwatooOnHand.Count);
+        MoveHwatooInHand();
     }
     
+    private void SortHwatooInHandByMonth() {
+        hwatooOnHand.Sort((a, b) => a.hwatooData.month.CompareTo(b.hwatooData.month));
+    }
+
+    private void MoveHwatooInHand()
+    {
+        for (int i = 0; i < hwatooOnHand.Count; i++)
+        {
+            hwatooOnHand[i].MoveTo((Vector2) transform.position + Vector2.right * (i + 1));
+        }
+    }
 }

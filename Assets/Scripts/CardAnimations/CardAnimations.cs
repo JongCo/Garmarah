@@ -49,15 +49,16 @@ public class CardAnimations
     public static IEnumerator ShuffleAnimation(
         Transform transform,
         EasingOption easing,
+        Vector2 targetPosition,
         float strength = 0.5f,
         float duration = 0.5f
     )
     {
-        Vector2 randomPos = UnityEngine.Random.insideUnitCircle.normalized * strength;
+        Vector2 randomPos = (Vector2)transform.position + UnityEngine.Random.insideUnitCircle.normalized * strength;
         return HwatooAnimation (
             transform,
             duration,
-            transform.position,
+            targetPosition,
             (progress, initialPos, initialZPos) => {
                 if (progress < 0.5f) {
                     transform.position = Vector3.Lerp(
@@ -68,7 +69,7 @@ public class CardAnimations
                 } else {
                     transform.position = Vector3.Lerp(
                         randomPos,
-                        initialPos,
+                        targetPosition,
                         SingleAxisBezier.CubicBezier(easing, (progress - 0.5f) / 0.5f)
                     ) + initialZPos;
                 }

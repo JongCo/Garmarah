@@ -8,12 +8,13 @@ public class Hwatoo : MonoBehaviour
 {
     public enum CardLocation { Deck, PlayerHand, OpponentHand, Field, Captured }
 
-    private HwatooData hwatooData;    
+    public HwatooData hwatooData {get; private set;}
 
     private bool interactable;
     private bool isSelected;
     [SerializeField] private SpriteRenderer spriteRenderer;
-    private Coroutine moveAnimationCoroutine;
+    private Coroutine animationCoroutine;
+    private Vector2 _targetPosition;
 
     private int _zIndex = 0;
     public int zIndex { 
@@ -35,22 +36,21 @@ public class Hwatoo : MonoBehaviour
         
     }
 
+    private void PlayAnimation(IEnumerator animation)
+    {
+        if (animationCoroutine != null) StopCoroutine(animationCoroutine);
+        animationCoroutine = StartCoroutine(animation);
+    }
+
     public void MoveTo(Vector2 targetPosition)
     {
-        if (moveAnimationCoroutine != null) StopCoroutine(moveAnimationCoroutine);
-
-        StartCoroutine(CardAnimations.MoveAnimation(transform, targetPosition, Preset.FastInSlowOut2, 0.7f));
+        _targetPosition = targetPosition;
+        PlayAnimation(CardAnimations.MoveAnimation(transform, targetPosition, Preset.FastInSlowOut2, 0.7f));
     }
 
     public void PlayShuffleAnimation()
     {
-        StartCoroutine(
-            CardAnimations.ShuffleAnimation(
-                transform, 
-                Preset.SlowInSlowOut2,
-                duration: 0.2f
-            )
-        );
+        PlayAnimation(CardAnimations.ShuffleAnimation(transform, Preset.SlowInSlowOut2, _targetPosition, duration: 0.2f));
     }
 
     public void Initialize(HwatooData hwatooData)
