@@ -5,6 +5,7 @@ public class BoardManager : MonoBehaviour
     private Deck deck;
     private Player playerBottom;
     private Player playerTop;
+    private Field field;
 
 
     public static BoardManager instance { get; private set; }
@@ -28,6 +29,11 @@ public class BoardManager : MonoBehaviour
         playerBottom = player;
     }
 
+    public void SetField(Field field)
+    {
+        this.field = field;
+    }
+
     public void DealToPlayer(Player player) {
         Hwatoo card = deck.Draw();
         if (card == null) return;
@@ -39,6 +45,13 @@ public class BoardManager : MonoBehaviour
     }
     public void DealToPlayerBottom() {
         DealToPlayer(playerBottom);
+    }
+
+    public void DealToField()
+    {
+        Hwatoo card = deck.Draw();
+        if (card == null) return;
+        field.AddHwatooToSlot(card, field.GetRandomEmptySlotIndex());
     }
 
     public void SetDeck(Deck deck)
