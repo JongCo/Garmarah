@@ -1,0 +1,12 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Documents/Stage/HwatooSelectionStyles.uss?fileID=7433441132597879392&amp;guid=0adcdbb2bef5994d49b496ec3ae2d702&amp;type=3#HwatooSelectionStyles"/>
+    <ui:VisualElement name="ScreenElement" style="flex-grow: 1; width: 100%; height: 100%; justify-content: center; align-items: center;">
+        <ui:VisualElement name="HwatooSelectionModal" style="flex-grow: 0; width: 800px; height: 500px; background-color: rgba(255, 255, 255, 0.15); border-top-left-radius: 63px; border-top-right-radius: 63px; border-bottom-right-radius: 63px; border-bottom-left-radius: 63px; border-top-width: 33px; border-right-width: 33px; border-bottom-width: 33px; border-left-width: 33px;">
+            <ui:VisualElement name="ButtonContianer" style="flex-grow: 1; flex-direction: row; justify-content: space-evenly; padding-top: 32px;">
+                <ui:Button text="" class="hwatoo-card"/>
+                <ui:Button text="" class="hwatoo-card"/>
+            </ui:VisualElement>
+            <ui:Label text="패를 한장 고르세요" style="font-size: 41px; -unity-text-align: upper-center; margin-top: 40px;"/>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

@@ -2,9 +2,10 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using JongCo.Easing;
+using UnityEngine.EventSystems;
 
 
-public class Hwatoo : MonoBehaviour
+public class Hwatoo : MonoBehaviour, IPointerDownHandler
 {
     public enum CardLocation { Deck, PlayerHand, OpponentHand, Field, Captured }
 
@@ -59,5 +60,10 @@ public class Hwatoo : MonoBehaviour
 
         cardText.text = $"{hwatooData.month}월\n{hwatooData.cardName}";
         spriteRenderer.sprite = hwatooData.sprite;
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        BoardManager.instance.PlayCard(this);
     }
 }

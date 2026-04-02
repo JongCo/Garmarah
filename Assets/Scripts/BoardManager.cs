@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 public class BoardManager : MonoBehaviour
@@ -51,11 +52,21 @@ public class BoardManager : MonoBehaviour
     {
         Hwatoo card = deck.Draw();
         if (card == null) return;
-        field.AddHwatooToSlot(card, field.GetRandomEmptySlotIndex());
+        field.AddHwatoo(card);
     }
 
     public void SetDeck(Deck deck)
     {
         this.deck = deck;
+    }
+
+    public async void PlayCard(Hwatoo hwatoo)
+    {
+        Hwatoo[] gotHwatoos = await field.PlayCard(hwatoo);
+        if (gotHwatoos == null) return;
+
+        // Debug : 임시로 플레이어에게 모든 화투를 넘김.
+        // TODO : 후에 어떤 플레이어가 패를 냈는지도 같이 받아서 처리할 것
+        playerBottom.AddHwatooToOwned(gotHwatoos);
     }
 }
