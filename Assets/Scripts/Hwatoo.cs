@@ -10,6 +10,7 @@ public class Hwatoo : MonoBehaviour, IPointerDownHandler
     public enum CardLocation { Deck, PlayerHand, OpponentHand, Field, Captured }
 
     public HwatooData hwatooData {get; private set;}
+    public Player owner { get; set; }
 
     private bool interactable;
     private bool isSelected;

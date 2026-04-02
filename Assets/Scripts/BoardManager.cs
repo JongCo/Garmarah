@@ -62,11 +62,12 @@ public class BoardManager : MonoBehaviour
 
     public async void PlayCard(Hwatoo hwatoo)
     {
+        Player player = hwatoo.owner;
+        player.RemoveHwatooFromHand(hwatoo);
+
         Hwatoo[] gotHwatoos = await field.PlayCard(hwatoo);
         if (gotHwatoos == null) return;
 
-        // Debug : 임시로 플레이어에게 모든 화투를 넘김.
-        // TODO : 후에 어떤 플레이어가 패를 냈는지도 같이 받아서 처리할 것
-        playerBottom.AddHwatooToOwned(gotHwatoos);
+        player.AddHwatooToOwned(gotHwatoos);
     }
 }

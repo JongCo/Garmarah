@@ -29,8 +29,15 @@ public class Player : MonoBehaviour
     }
 
     public void AddHwatooToHand(Hwatoo hwatoo) {
+        hwatoo.owner = this;
         hwatooOnHand.Add(hwatoo);
         SortHwatooInHandByMonth();
+        MoveHwatooToHand();
+    }
+
+    public void RemoveHwatooFromHand(Hwatoo hwatoo) {
+        hwatooOnHand.Remove(hwatoo);
+        hwatoo.owner = null;
         MoveHwatooToHand();
     }
 
@@ -38,8 +45,6 @@ public class Player : MonoBehaviour
     {
         ownedHwatoos.AddRange(hwatoo);
         MoveHwatooToOwned();
-        // TODO : Hwatoo는 패를 낼 때 소속된 플레이어로부터 빠져나갈 것
-        // MoveHwatooToHand();
     }
     
     private void SortHwatooInHandByMonth() {
