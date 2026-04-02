@@ -100,7 +100,7 @@ public class Field : MonoBehaviour
     }
 
     /// <summary>
-    /// 패를 냅니다. 먹은 패 배열을 반환하며, 먹은 패가 없으면 null을 반환합니다.
+    /// 패를 냅니다. 먹은 패 배열을 반환하며, 먹은 패가 없으면 빈 배열을 반환합니다.
     /// </summary>
     public async UniTask<Hwatoo[]> PlayCard(Hwatoo playedHwatoo)
     {
@@ -110,7 +110,7 @@ public class Field : MonoBehaviour
         {
             AddHwatoo(playedHwatoo);
             print("no match");
-            return null;
+            return System.Array.Empty<Hwatoo>();
         }
 
         print($"matched : {matchedSlotIndex}");

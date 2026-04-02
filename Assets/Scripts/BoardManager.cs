@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
@@ -62,11 +63,17 @@ public class BoardManager : MonoBehaviour
 
     public async void PlayCard(Hwatoo hwatoo)
     {
+        List<Hwatoo> gotHwatoos = new();
         Player player = hwatoo.owner;
         player.RemoveHwatooFromHand(hwatoo);
 
-        Hwatoo[] gotHwatoos = await field.PlayCard(hwatoo);
-        if (gotHwatoos == null) return;
+        gotHwatoos.AddRange(await field.PlayCard(hwatoo));
+
+        Hwatoo drawedHwatoo = deck.Draw();
+        drawedHwatoo.owner = player;
+        gotHwatoos.AddRange(await field.PlayCard(drawedHwatoo));
+
+        if (gotHwatoos.Count == 0) return;
 
         player.AddHwatooToOwned(gotHwatoos);
     }

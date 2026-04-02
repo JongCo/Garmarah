@@ -41,7 +41,7 @@ public class Player : MonoBehaviour
         MoveHwatooToHand();
     }
 
-    public void AddHwatooToOwned(Hwatoo[] hwatoo)
+    public void AddHwatooToOwned(IEnumerable<Hwatoo> hwatoo)
     {
         ownedHwatoos.AddRange(hwatoo);
         MoveHwatooToOwned();
