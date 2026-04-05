@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -41,12 +42,12 @@ public class Player : MonoBehaviour
         MoveHwatooToHand();
     }
 
-    public void AddHwatooToOwned(IEnumerable<Hwatoo> hwatoo)
+    public async UniTask AddHwatooToOwned(IEnumerable<Hwatoo> hwatoo)
     {
         ownedHwatoos.AddRange(hwatoo);
-        MoveHwatooToOwned();
+        await MoveHwatooToOwned();
     }
-    
+
     private void SortHwatooInHandByMonth() {
         hwatooOnHand.Sort((a, b) => a.hwatooData.month.CompareTo(b.hwatooData.month));
     }
@@ -59,11 +60,13 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void MoveHwatooToOwned()
+    private UniTask MoveHwatooToOwned()
     {
+        var tasks = new UniTask[ownedHwatoos.Count];
         for (int i = 0; i < ownedHwatoos.Count; i++)
         {
-            ownedHwatoos[i].MoveTo((Vector2) ownedHwatooPivot.position + Vector2.right * (i + 1));
+            tasks[i] = ownedHwatoos[i].MoveTo((Vector2) ownedHwatooPivot.position + Vector2.right * (i + 1));
         }
+        return UniTask.WhenAll(tasks);
     }
 }

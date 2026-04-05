@@ -26,6 +26,7 @@ public class Deck : MonoBehaviour
                 Quaternion.identity
             );
             createdHwatoo.Initialize(hwatooData);
+            createdHwatoo.isReversed = true;
             cards.Add(createdHwatoo);
         }
     }
@@ -49,6 +50,7 @@ public class Deck : MonoBehaviour
         if (cards.Count == 0) return null;
 
         Hwatoo top = cards[^1];
+        top.isReversed = false;
         cards.RemoveAt(cards.Count - 1);
         return top;
     }

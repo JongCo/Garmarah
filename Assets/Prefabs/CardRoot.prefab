@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4074385042938916253
 RectTransform:
   m_ObjectHideFlags: 0
@@ -229,6 +229,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Hwatoo
   spriteRenderer: {fileID: 8683212239712185813}
+  reversedSprite: {fileID: 2077582095607957271, guid: 22af59466d2395710baed977f8adaf75, type: 3}
   cardText: {fileID: 8650132946997185932}
 --- !u!61 &7656278955522834526
 BoxCollider2D:
@@ -357,7 +358,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 1846636519, guid: ab3420c32171da7d09941f447b766031, type: 3}
+  m_Sprite: {fileID: -7249283931792368137, guid: c6ed589eb9e90788fbfd602e683836c5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
