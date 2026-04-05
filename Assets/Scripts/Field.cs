@@ -138,7 +138,7 @@ public class Field : MonoBehaviour
             Hwatoo selected = await selectionUI.AskSelection(slotCards);
             Hwatoo remaining = selected == slotCards[0] ? slotCards[1] : slotCards[0];
             RemoveCardsFromSlot(matchedSlotIndex);
-            // await AddHwatoo(remaining, matchedSlotIndex);
+            await AddHwatoo(remaining, matchedSlotIndex);
             return new[] { playedHwatoo, selected };
         }
         else
