@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Cysharp.Threading.Tasks;
@@ -65,8 +64,18 @@ public class BoardManager : MonoBehaviour
 
     public async void PlayCard(Hwatoo hwatoo)
     {
-        // 플레이어 화투 패 처리
         Player player = hwatoo.owner;
+        int month = hwatoo.hwatooData.month;
+
+        // 폭탄 체크: 손패에 같은 월 3장 + 바닥에 같은 월 패 존재
+        List<Hwatoo> sameMonthCards = player.GetSameMonthCardsOnHand(month);
+        if (sameMonthCards.Count >= 3 && field.HasSlotForMonth(month))
+        {
+            await PlayBomb(player, sameMonthCards);
+            return;
+        }
+
+        // 플레이어 화투 패 처리
         player.RemoveHwatooFromHand(hwatoo);
 
         int addedSlotIndex = await field.AddHwatoo(hwatoo, true);
@@ -103,5 +112,38 @@ public class BoardManager : MonoBehaviour
 
             return;
         }
+    }
+
+    private async UniTask PlayBomb(Player player, List<Hwatoo> bombCards)
+    {
+        int month = bombCards[0].hwatooData.month;
+
+        foreach (var card in bombCards)
+            player.RemoveHwatooFromHand(card);
+
+        // 3장을 바닥 슬롯 위치로 날림
+        Vector3 slotPos = field.GetSlotPosition(month);
+        await UniTask.WhenAll(bombCards.Select(c => c.PlayTo(slotPos)));
+
+        // 바닥 해당 월 패 전부 수거
+        Hwatoo[] fieldCards = field.TakeAllCardsFromMonth(month);
+
+        await player.AddHwatooToOwned(bombCards.Concat(fieldCards));
+
+        // 공패 3장 지급
+        player.AddDummyCards(3);
+    }
+
+    public async void PlayDummyCard(Hwatoo dummyCard)
+    {
+        Player player = dummyCard.owner;
+        player.RemoveHwatooFromHand(dummyCard);
+        Destroy(dummyCard.gameObject);
+
+        Hwatoo drawnCard = deck.Draw();
+        drawnCard.owner = player;
+        await field.AddHwatoo(drawnCard, true);
+        Hwatoo[] gotten = await field.PlayCard(drawnCard);
+        if (gotten.Length > 0) await player.AddHwatooToOwned(gotten);
     }
 }

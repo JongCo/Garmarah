@@ -105,6 +105,29 @@ public class Field : MonoBehaviour
         fieldSlots[index].Clear();
     }
 
+    public bool HasSlotForMonth(int month)
+    {
+        return FindSlotByMonth(month) != -1;
+    }
+
+    public Vector3 GetSlotPosition(int month)
+    {
+        int slotIndex = FindSlotByMonth(month);
+        return slotIndex != -1 ? slotTransforms[slotIndex].position : Vector3.zero;
+    }
+
+    /// <summary>
+    /// 해당 월 슬롯의 패를 전부 꺼내 반환하고 슬롯을 비웁니다.
+    /// </summary>
+    public Hwatoo[] TakeAllCardsFromMonth(int month)
+    {
+        int slotIndex = FindSlotByMonth(month);
+        if (slotIndex == -1) return System.Array.Empty<Hwatoo>();
+        Hwatoo[] cards = fieldSlots[slotIndex].ToArray();
+        RemoveCardsFromSlot(slotIndex);
+        return cards;
+    }
+
     /// <summary>
     /// 패를 냅니다. 먹은 패 배열을 반환하며, 먹은 패가 없으면 빈 배열을 반환합니다.
     /// </summary>

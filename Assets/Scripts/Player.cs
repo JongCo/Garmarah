@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
@@ -11,6 +12,7 @@ public class Player : MonoBehaviour
     [SerializeField] private bool isBottomPlayer;
 
     [SerializeField] private Transform ownedHwatooPivot;
+    [SerializeField] private Hwatoo dummyCardPrefab;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -42,6 +44,21 @@ public class Player : MonoBehaviour
         MoveHwatooToHand();
     }
 
+    public List<Hwatoo> GetSameMonthCardsOnHand(int month)
+    {
+        return hwatooOnHand.Where(h => h.hwatooData.month == month).ToList();
+    }
+
+    public void AddDummyCards(int count)
+    {
+        for (int i = 0; i < count; i++)
+        {
+            Hwatoo dummy = Instantiate(dummyCardPrefab);
+            dummy.InitializeAsDummy();
+            AddHwatooToHand(dummy);
+        }
+    }
+
     public async UniTask AddHwatooToOwned(IEnumerable<Hwatoo> hwatoo)
     {
         ownedHwatoos.AddRange(hwatoo);
@@ -49,7 +66,7 @@ public class Player : MonoBehaviour
     }
 
     private void SortHwatooInHandByMonth() {
-        hwatooOnHand.Sort((a, b) => a.hwatooData.month.CompareTo(b.hwatooData.month));
+        hwatooOnHand.Sort((a, b) => (a.hwatooData?.month ?? int.MaxValue).CompareTo(b.hwatooData?.month ?? int.MaxValue));
     }
 
     private void MoveHwatooToHand()

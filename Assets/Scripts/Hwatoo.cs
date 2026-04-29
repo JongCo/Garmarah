@@ -97,6 +97,8 @@ public class Hwatoo : MonoBehaviour, IPointerDownHandler
         PlayAnimation(CardAnimations.ShuffleAnimation(transform, Preset.SlowInSlowOut2, _targetPosition, duration: 0.2f));
     }
 
+    public bool isDummy { get; private set; }
+
     public void Initialize(HwatooData hwatooData)
     {
         this.hwatooData = hwatooData;
@@ -105,8 +107,16 @@ public class Hwatoo : MonoBehaviour, IPointerDownHandler
         spriteRenderer.sprite = hwatooData.sprite;
     }
 
+    public void InitializeAsDummy()
+    {
+        isDummy = true;
+    }
+
     public void OnPointerDown(PointerEventData eventData)
     {
-        BoardManager.instance.PlayCard(this);
+        if (isDummy)
+            BoardManager.instance.PlayDummyCard(this);
+        else
+            BoardManager.instance.PlayCard(this);
     }
 }
