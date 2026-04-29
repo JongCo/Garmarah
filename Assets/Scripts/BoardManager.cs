@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
@@ -63,10 +65,10 @@ public class BoardManager : MonoBehaviour
 
     public async void PlayCard(Hwatoo hwatoo)
     {
+        // 플레이어 화투 패 처리
         Player player = hwatoo.owner;
         player.RemoveHwatooFromHand(hwatoo);
 
-        // 플레이어 화투 패 처리
         int addedSlotIndex = await field.AddHwatoo(hwatoo, true);
 
         // 뽑은 화투 패 처리
@@ -94,9 +96,11 @@ public class BoardManager : MonoBehaviour
         else
         {
             Hwatoo[] gotFromHand = await field.PlayCard(hwatoo);
-            if (gotFromHand.Length > 0) await player.AddHwatooToOwned(gotFromHand);
             Hwatoo[] gotFromDeck = await field.PlayCard(drawedHwatoo);
-            if (gotFromDeck.Length > 0) await player.AddHwatooToOwned(gotFromDeck);
+            
+            await player.AddHwatooToOwned(Enumerable.Concat(gotFromHand, gotFromDeck));
+
+
             return;
         }
     }
