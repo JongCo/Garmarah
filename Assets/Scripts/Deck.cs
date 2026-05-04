@@ -6,6 +6,9 @@ public class Deck : MonoBehaviour
     [SerializeField] private HwatooData[] hwatooDataArray;
     [SerializeField] private Hwatoo hwatooPrefab;
 
+    // For Debugging
+    public bool dontReverse;
+
     /// <summary>
     /// Deck에 있는 카드들을 나타내는 리스트입니다. 리스트의 0번째 요소가 가장 아래에 있는 카드입니다.
     /// </summary>
@@ -26,7 +29,8 @@ public class Deck : MonoBehaviour
                 Quaternion.identity
             );
             createdHwatoo.Initialize(hwatooData);
-            createdHwatoo.isReversed = true;
+            createdHwatoo.isReversed = !dontReverse;
+
             cards.Add(createdHwatoo);
         }
     }

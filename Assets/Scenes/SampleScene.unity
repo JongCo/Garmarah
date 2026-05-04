@@ -1127,6 +1127,7 @@ MonoBehaviour:
   isHuman: 1
   isBottomPlayer: 0
   ownedHwatooPivot: {fileID: 968854746}
+  dummyCardPrefab: {fileID: 1841883271277464779, guid: 9edc81ae1c23e02d9afcff7bf7e7907e, type: 3}
 --- !u!4 &963882151
 Transform:
   m_ObjectHideFlags: 0
@@ -1417,6 +1418,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8c51ca2275b5c69719f8d383edb31fb1, type: 2}
   - {fileID: 11400000, guid: 60cfcd9a956fa2c0b908b87f56224524, type: 2}
   hwatooPrefab: {fileID: 1841883271277464779, guid: 0ca4117896021706080b785465ebb5ab, type: 3}
+  dontReverse: 1
 --- !u!4 &1242357358
 Transform:
   m_ObjectHideFlags: 0
@@ -2039,6 +2041,7 @@ MonoBehaviour:
   isHuman: 1
   isBottomPlayer: 1
   ownedHwatooPivot: {fileID: 1387458840}
+  dummyCardPrefab: {fileID: 1841883271277464779, guid: 9edc81ae1c23e02d9afcff7bf7e7907e, type: 3}
 --- !u!4 &1489483336
 Transform:
   m_ObjectHideFlags: 0

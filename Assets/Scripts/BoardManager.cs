@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Cysharp.Threading.Tasks;
@@ -65,6 +66,7 @@ public class BoardManager : MonoBehaviour
     public async void PlayCard(Hwatoo hwatoo)
     {
         Player player = hwatoo.owner;
+        Player opponent = player == playerTop ? playerBottom : playerTop;
         int month = hwatoo.hwatooData.month;
 
         // 폭탄 체크: 손패에 같은 월 3장 + 바닥에 같은 월 패 존재
@@ -72,12 +74,12 @@ public class BoardManager : MonoBehaviour
         if (sameMonthCards.Count >= 3 && field.HasSlotForMonth(month))
         {
             await PlayBomb(player, sameMonthCards);
+            await TakePiFromOpponent(player, opponent);
             return;
         }
 
         // 플레이어 화투 패 처리
         player.RemoveHwatooFromHand(hwatoo);
-
         int addedSlotIndex = await field.AddHwatoo(hwatoo, true);
 
         // 뽑은 화투 패 처리
@@ -97,8 +99,15 @@ public class BoardManager : MonoBehaviour
             }
             else
             {
+                print("쪽&따닥");
+
                 Hwatoo[] gotFromDeck = await field.PlayCard(drawedHwatoo);
-                if (gotFromDeck.Length > 0) await player.AddHwatooToOwned(gotFromDeck);
+                if (gotFromDeck.Length > 0) {
+                    await player.AddHwatooToOwned(gotFromDeck);
+                }
+
+                await TakePiFromOpponent(player, opponent);
+
                 return;
             }
         } 
@@ -108,10 +117,28 @@ public class BoardManager : MonoBehaviour
             Hwatoo[] gotFromDeck = await field.PlayCard(drawedHwatoo);
             
             await player.AddHwatooToOwned(Enumerable.Concat(gotFromHand, gotFromDeck));
+            if (gotFromHand.Length == 4)
+            {
+                await TakePiFromOpponent(player, opponent);
+            }
 
+            if (gotFromDeck.Length == 4)
+            {
+                await TakePiFromOpponent(player, opponent);
+            }
 
             return;
         }
+    }
+
+    private async UniTask TakePiFromOpponent(Player player, Player opponent)
+    {
+        Hwatoo takenHwatoo = opponent.GetPiCardOnOwned();
+        if (takenHwatoo == null) return;
+
+        UniTask removeFromOpponent = opponent.RemoveHwatooFromOwned(takenHwatoo);
+        UniTask addToPlayer = player.AddHwatooToOwned(new Hwatoo[] { takenHwatoo });
+        await UniTask.WhenAll(removeFromOpponent, addToPlayer);
     }
 
     private async UniTask PlayBomb(Player player, List<Hwatoo> bombCards)

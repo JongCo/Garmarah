@@ -49,6 +49,22 @@ public class Player : MonoBehaviour
         return hwatooOnHand.Where(h => h.hwatooData.month == month).ToList();
     }
 
+    public List<Hwatoo> GetCardsByTypeOnOwned(CardType type)
+    {
+        return ownedHwatoos.Where(h => h.hwatooData.cardType == type).ToList();
+    }
+
+    public Hwatoo GetPiCardOnOwned()
+    {
+        List<Hwatoo> pis = GetCardsByTypeOnOwned(CardType.Pi);
+        if (pis.Count > 0) {return pis[^1];}
+
+        List<Hwatoo> ssangPis = GetCardsByTypeOnOwned(CardType.SSangPi);
+        if (ssangPis.Count > 0) {return ssangPis[^1];}
+
+        return null;
+    }
+
     public void AddDummyCards(int count)
     {
         for (int i = 0; i < count; i++)
@@ -61,7 +77,19 @@ public class Player : MonoBehaviour
 
     public async UniTask AddHwatooToOwned(IEnumerable<Hwatoo> hwatoo)
     {
-        ownedHwatoos.AddRange(hwatoo);
+        List<Hwatoo> cards = hwatoo.ToList();
+
+        foreach (var card in cards)
+            card.owner = this;
+
+        ownedHwatoos.AddRange(cards);
+        await MoveHwatooToOwned();
+    }
+
+    public async UniTask RemoveHwatooFromOwned(Hwatoo hwatoo)
+    {
+        ownedHwatoos.Remove(hwatoo);
+        hwatoo.owner = null;
         await MoveHwatooToOwned();
     }
 
