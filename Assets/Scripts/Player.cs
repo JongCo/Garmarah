@@ -46,7 +46,7 @@ public class Player : MonoBehaviour
 
     public List<Hwatoo> GetSameMonthCardsOnHand(int month)
     {
-        return hwatooOnHand.Where(h => h.hwatooData.month == month).ToList();
+        return hwatooOnHand.Where(h => h.hwatooData?.month == month).ToList();
     }
 
     public List<Hwatoo> GetCardsByTypeOnOwned(CardType type)
