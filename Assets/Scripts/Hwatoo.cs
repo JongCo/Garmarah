@@ -114,9 +114,6 @@ public class Hwatoo : MonoBehaviour, IPointerDownHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (isDummy)
-            BoardManager.instance.PlayDummyCard(this);
-        else
-            BoardManager.instance.PlayCard(this);
+        BoardManager.instance.Play(this);
     }
 }

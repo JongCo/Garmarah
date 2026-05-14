@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
@@ -100,6 +101,23 @@ public class Field : MonoBehaviour
         return fieldSlots[index];
     }
 
+    public UniTask RearrangeSlot(int index)
+    {
+        List<Hwatoo> slotCards = fieldSlots[index];
+        int count = slotCards.Count;
+        UniTask[] moves = new UniTask[count];
+        Vector3 slotPosition = slotTransforms[index].position;
+
+        for (int i = 0; i < count; i++)
+        {
+            Hwatoo hwatoo = slotCards[i];
+            hwatoo.zIndex = i;
+            moves[i] = hwatoo.MoveTo(slotPosition + Vector3.right * (stackOffset * i));
+        }
+
+        return UniTask.WhenAll(moves);
+    }
+
     public void RemoveCardsFromSlot(int index)
     {
         fieldSlots[index].Clear();
@@ -131,11 +149,22 @@ public class Field : MonoBehaviour
     /// <summary>
     /// 패를 냅니다. 먹은 패 배열을 반환하며, 먹은 패가 없으면 빈 배열을 반환합니다.
     /// </summary>
-    public async UniTask<Hwatoo[]> PlayCard(Hwatoo playedHwatoo)
+    public async UniTask<Hwatoo[]> ResolveCaptured(Hwatoo playedHwatoo)
     {
-        print("PlayedCard");
         int matchedSlotIndex = FindSlotByMonth(playedHwatoo);
-        if (fieldSlots[matchedSlotIndex].Count == 1)
+
+        if ( 
+            matchedSlotIndex == -1 || 
+            fieldSlots[matchedSlotIndex].Count == 0 
+        ) {
+            Debug.Log("패 처리를 위해선, 반드시 패를 해당 슬롯에 준비해야 합니다.");
+            return System.Array.Empty<Hwatoo>();
+        }
+
+        List<Hwatoo> slotCards = fieldSlots[matchedSlotIndex];
+
+
+        if (slotCards.Count == 1)
         {
             // await AddHwatoo(playedHwatoo);
             print("no match");
@@ -143,10 +172,9 @@ public class Field : MonoBehaviour
         }
 
         print($"matched : {matchedSlotIndex}");
-        playedHwatoo.zIndex = fieldSlots[matchedSlotIndex].Count;
+        playedHwatoo.zIndex = slotCards.Count;
         // await playedHwatoo.PlayTo(slotTransforms[matchedSlotIndex].position);
 
-        List<Hwatoo> slotCards = fieldSlots[matchedSlotIndex];
 
         if (slotCards.Count == 2)
         {
@@ -158,8 +186,12 @@ public class Field : MonoBehaviour
         else if (slotCards.Count == 3)
         {
             // 필드에 패가 두 개 -> 유저가 하나 선택
-            Hwatoo selected = await selectionUI.AskSelection(slotCards);
-            Hwatoo remaining = selected == slotCards[0] ? slotCards[1] : slotCards[0];
+            List<Hwatoo> candidates 
+                = slotCards
+                    .Where(hwatoo => hwatoo != playedHwatoo).ToList();
+
+            Hwatoo selected = await selectionUI.AskSelection(candidates);
+            Hwatoo remaining = selected == candidates[0] ? candidates[1] : candidates[0];
             RemoveCardsFromSlot(matchedSlotIndex);
             await AddHwatoo(remaining, matchedSlotIndex);
             return new[] { playedHwatoo, selected };
@@ -169,7 +201,12 @@ public class Field : MonoBehaviour
             // 필드에 패가 세 개 -> 다 먹음
             Hwatoo[] taken = slotCards.ToArray();
             RemoveCardsFromSlot(matchedSlotIndex);
-            return new[] { playedHwatoo, taken[0], taken[1], taken[2] };
+            return taken;
         }
+    }
+
+    public bool CheckAllClear()
+    {
+        return fieldSlots.All(slot => slot.Count == 0);
     }
 }

@@ -11,7 +11,6 @@ public class BoardManager : MonoBehaviour
     private Player playerTop;
     private Field field;
 
-
     public static BoardManager instance { get; private set; }
 
     private void Awake()
@@ -51,11 +50,11 @@ public class BoardManager : MonoBehaviour
         DealToPlayer(playerBottom);
     }
 
-    public void DealToField()
+    public async void DealToField()
     {
         Hwatoo card = deck.Draw();
         if (card == null) return;
-        field.AddHwatoo(card);
+        await field.AddHwatoo(card);
     }
 
     public void SetDeck(Deck deck)
@@ -63,72 +62,131 @@ public class BoardManager : MonoBehaviour
         this.deck = deck;
     }
 
-    public async void PlayCard(Hwatoo hwatoo)
+    public void Play(Hwatoo hwatoo)
     {
-        Player player = hwatoo.owner;
-        Player opponent = player == playerTop ? playerBottom : playerTop;
-        int month = hwatoo.hwatooData.month;
+        PlayHwatoo(hwatoo).Forget();
+    }
 
-        // 폭탄 체크: 손패에 같은 월 3장 + 바닥에 같은 월 패 존재
-        List<Hwatoo> sameMonthCards = player.GetSameMonthCardsOnHand(month);
-        if (sameMonthCards.Count >= 3 && field.HasSlotForMonth(month))
+    private async UniTask PlayHwatoo(Hwatoo hwatoo)
+    {
+        PlayContext playContext = CreatePlayContext(hwatoo);
+
+        if (hwatoo.isDummy)
         {
-            await PlayBomb(player, sameMonthCards);
-            await TakePiFromOpponent(player, opponent);
-            return;
+            playContext.player.RemoveHwatooFromHand(hwatoo);
+            Destroy(hwatoo.gameObject);
+        }
+        else
+        {
+            await PlayHandCard(playContext);
         }
 
-        // 플레이어 화투 패 처리
-        player.RemoveHwatooFromHand(hwatoo);
-        int addedSlotIndex = await field.AddHwatoo(hwatoo, true);
+        playContext.drawedCard = DrawForPlay(playContext.player);
+        playContext.drawedPlayedSlot = await field.AddHwatoo(playContext.drawedCard, true);
 
-        // 뽑은 화투 패 처리
-        Hwatoo drawedHwatoo = deck.Draw();
-        drawedHwatoo.owner = player;
-        int addedDrawedSlotIndex = await field.AddHwatoo(drawedHwatoo, true);
-        
-        int afterPlayCount = field.GetCardsInSlot(addedSlotIndex).Count;
-        print(afterPlayCount);
-
-        if (addedSlotIndex == addedDrawedSlotIndex)
+        if (playContext.playedSlot == -1)
         {
-            if (afterPlayCount == 3)
+            Hwatoo[] gotFromDeck = await field.ResolveCaptured(playContext.drawedCard);
+
+            if (gotFromDeck.Length == 4) playContext.piTakeCount++;
+
+            await playContext.player.AddHwatooToOwned(gotFromDeck);
+        }
+        else if (playContext.playedSlot == playContext.drawedPlayedSlot)
+        {
+            if (field.GetCardsInSlot(playContext.drawedPlayedSlot).Count == 3)
             {
-                // TODO : Field에게 해당 화투는 뻑나서 먹지 않을테니 널부러진 화투 재정리하게 시키기
-                return;
+                // 뻑
+                await field.RearrangeSlot(playContext.drawedPlayedSlot);
             }
             else
             {
-                print("쪽&따닥");
-
-                Hwatoo[] gotFromDeck = await field.PlayCard(drawedHwatoo);
-                if (gotFromDeck.Length > 0) {
-                    await player.AddHwatooToOwned(gotFromDeck);
+                // 쪽, 따닥
+                Hwatoo[] gotFromSameSlot = await field.ResolveCaptured(playContext.drawedCard);
+                if (gotFromSameSlot.Length > 0)
+                {
+                    await playContext.player.AddHwatooToOwned(gotFromSameSlot);
+                    playContext.piTakeCount++;
                 }
-
-                await TakePiFromOpponent(player, opponent);
-
-                return;
             }
+        }
+        else
+        {
+            Hwatoo[] gotFromHand = await field.ResolveCaptured(playContext.playedCard);
+            Hwatoo[] gotFromDeck = await field.ResolveCaptured(playContext.drawedCard);
+
+            if (gotFromHand.Length == 4) playContext.piTakeCount++;
+            if (gotFromDeck.Length == 4) playContext.piTakeCount++;
+
+            await playContext.player.AddHwatooToOwned(Enumerable.Concat(gotFromHand, gotFromDeck));
+        }
+
+        for(int i = 0; i < playContext.piTakeCount; i++)
+        {
+            await TakePiFromOpponent(playContext.player, playContext.opponent);
+        }
+    }
+
+    private async UniTask PlayHandCard(PlayContext playContext)
+    {
+
+        if (TryGetBombCards(playContext, out var bombCards))
+        {
+            int bombTargetMonth = bombCards[0].hwatooData.month;
+            foreach (var bombHwatoo in bombCards)
+            {
+                playContext.player.RemoveHwatooFromHand(bombHwatoo);
+                playContext.playedSlot = await field.AddHwatoo(bombHwatoo);
+            }
+
+            Vector3 slotPos = field.GetSlotPosition(bombTargetMonth);
+            playContext.player.AddDummyCards(3);
+            await UniTask.WhenAll(bombCards.Select(c => c.PlayTo(slotPos)));
+
+            playContext.isBomb = true;
+
+            return;
         } 
         else
         {
-            Hwatoo[] gotFromHand = await field.PlayCard(hwatoo);
-            Hwatoo[] gotFromDeck = await field.PlayCard(drawedHwatoo);
-            
-            await player.AddHwatooToOwned(Enumerable.Concat(gotFromHand, gotFromDeck));
-            if (gotFromHand.Length == 4)
-            {
-                await TakePiFromOpponent(player, opponent);
-            }
-
-            if (gotFromDeck.Length == 4)
-            {
-                await TakePiFromOpponent(player, opponent);
-            }
-
-            return;
+            playContext.player.RemoveHwatooFromHand(playContext.playedCard);
+            playContext.playedSlot = await field.AddHwatoo(playContext.playedCard, true);
         }
+    }
+
+    private PlayContext CreatePlayContext(Hwatoo hwatoo)
+    {
+        Player player = hwatoo.owner;
+        Player opponent = player == playerTop ? playerBottom : playerTop;
+        return new PlayContext(hwatoo, player, opponent);
+    }
+
+    private bool TryGetBombCards(PlayContext context, out List<Hwatoo> bombCards)
+    {
+        int month = context.playedCard.hwatooData.month;
+
+        // 폭탄 체크: 손패에 같은 월 3장 + 바닥에 같은 월 패 존재
+        if (TryGetTripleCardsOnHand(context, out bombCards) && field.HasSlotForMonth(month))
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    private bool TryGetTripleCardsOnHand(PlayContext playContext, out List<Hwatoo> shakableCards)
+    {
+        shakableCards = null;
+        int month = playContext.playedCard.hwatooData.month;
+
+        List<Hwatoo> sameMonthCards = playContext.player.GetSameMonthCardsOnHand(month);
+        if (sameMonthCards.Count < 3)
+        {
+            return false;
+        }
+
+        shakableCards = sameMonthCards;
+        return true;
     }
 
     private async UniTask TakePiFromOpponent(Player player, Player opponent)
@@ -141,36 +199,48 @@ public class BoardManager : MonoBehaviour
         await UniTask.WhenAll(removeFromOpponent, addToPlayer);
     }
 
-    private async UniTask PlayBomb(Player player, List<Hwatoo> bombCards)
+    /// <summary>
+    /// BoardManager에 등록된 Deck에게서 더미 패를 한장 뽑는 메서드입니다. 뽑은 패의 소유권은 매개변수로 전달한 Player로 지정됩니다.
+    /// </summary>
+    /// <param name="player"></param>
+    /// <returns></returns>
+    private Hwatoo DrawForPlay(Player player)
     {
-        int month = bombCards[0].hwatooData.month;
+        Hwatoo drawnCard = deck.Draw();
+        if (drawnCard != null)
+            drawnCard.owner = player;
 
-        foreach (var card in bombCards)
-            player.RemoveHwatooFromHand(card);
-
-        // 3장을 바닥 슬롯 위치로 날림
-        Vector3 slotPos = field.GetSlotPosition(month);
-        await UniTask.WhenAll(bombCards.Select(c => c.PlayTo(slotPos)));
-
-        // 바닥 해당 월 패 전부 수거
-        Hwatoo[] fieldCards = field.TakeAllCardsFromMonth(month);
-
-        await player.AddHwatooToOwned(bombCards.Concat(fieldCards));
-
-        // 공패 3장 지급
-        player.AddDummyCards(3);
+        return drawnCard;
     }
 
-    public async void PlayDummyCard(Hwatoo dummyCard)
+    private class PlayContext
     {
-        Player player = dummyCard.owner;
-        player.RemoveHwatooFromHand(dummyCard);
-        Destroy(dummyCard.gameObject);
+        public Player player;
+        public Player opponent;
 
-        Hwatoo drawnCard = deck.Draw();
-        drawnCard.owner = player;
-        await field.AddHwatoo(drawnCard, true);
-        Hwatoo[] gotten = await field.PlayCard(drawnCard);
-        if (gotten.Length > 0) await player.AddHwatooToOwned(gotten);
+        public Hwatoo playedCard;
+        public Hwatoo drawedCard;
+
+        public int playedSlot = -1;
+        public int drawedPlayedSlot = -1;
+        
+        public int piTakeCount = 0;
+
+        public bool isBomb = false;
+
+        public PlayContext(Hwatoo playedCard, Player player, Player opponent)
+        {
+            this.playedCard = playedCard;
+            this.player = player;
+            this.opponent = opponent;
+        }
+
+        public void Reset()
+        {
+            playedCard = null;
+            player = null;
+            opponent = null;
+            this.piTakeCount = 0;
+        }
     }
 }
