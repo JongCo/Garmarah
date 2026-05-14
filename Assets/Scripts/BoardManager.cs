@@ -88,7 +88,7 @@ public class BoardManager : MonoBehaviour
         {
             Hwatoo[] gotFromDeck = await field.ResolveCaptured(playContext.drawedCard);
 
-            if (gotFromDeck.Length == 4) playContext.piTakeCount++;
+            if (gotFromDeck.Length == 4) { playContext.piTakeCount++; }
 
             await playContext.player.AddHwatooToOwned(gotFromDeck);
         }
@@ -117,6 +117,8 @@ public class BoardManager : MonoBehaviour
 
             if (gotFromHand.Length == 4) playContext.piTakeCount++;
             if (gotFromDeck.Length == 4) playContext.piTakeCount++;
+
+            if (field.CheckAllClear()) playContext.piTakeCount++;
 
             await playContext.player.AddHwatooToOwned(Enumerable.Concat(gotFromHand, gotFromDeck));
         }
