@@ -63,7 +63,7 @@ public class Field : MonoBehaviour
         if (isPlaying) {
             await hwatoo.PlayTo(targetPos);
         } else {
-            await hwatoo.MoveTo(targetPos);
+            await hwatoo.MoveTo(targetPos, Vector2.one);
         }
         return index;
     }
@@ -112,7 +112,7 @@ public class Field : MonoBehaviour
         {
             Hwatoo hwatoo = slotCards[i];
             hwatoo.zIndex = i;
-            moves[i] = hwatoo.MoveTo(slotPosition + Vector3.right * (stackOffset * i));
+            moves[i] = hwatoo.MoveTo(slotPosition + Vector3.right * (stackOffset * i), Vector2.one);
         }
 
         return UniTask.WhenAll(moves);

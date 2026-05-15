@@ -9,18 +9,18 @@ public class CardAnimations
     public static IEnumerator HwatooAnimation(
         Transform transform,
         float duration,
-        Vector2 targetPosition,
-        Action<float, Vector2, Vector3> animation,
+        Action<float, Vector2, Vector2, Vector3> animation,
         Action<Vector2, Vector3> finalAction
     ) {
         float progress = 0;
         Vector2 initialPos = transform.position;
         Vector3 initialZPos = Vector3.forward * transform.position.z;
+        Vector2 initialScale = transform.localScale;
 
         while (progress < duration) {
             float progressRatio = progress / duration;
 
-            animation(progress / duration, initialPos, initialZPos);
+            animation(progressRatio, initialPos, initialScale, initialZPos);
 
             progress += Time.unscaledDeltaTime;
             yield return null;
@@ -41,19 +41,27 @@ public class CardAnimations
     public static IEnumerator MoveAnimation(
         Transform transform,
         Vector2 targetPosition,
+        Vector2 targetScale,
         EasingOption easingOption,
         float duration
     ) {
         return HwatooAnimation (
             transform,
             duration,
-            targetPosition,
-            (progress, initialPos, initialZPos) => {
+            (progress, initialPos, initialScale, initialZPos) => {
+
                 transform.position = Vector3.Lerp(
                     initialPos, 
                     targetPosition,
                     SingleAxisBezier.CubicBezier(easingOption, progress)
                 ) + initialZPos;
+
+                transform.localScale = Vector3.Lerp(
+                    initialScale,
+                    targetScale,
+                    SingleAxisBezier.CubicBezier(easingOption, progress)
+                ) + Vector3.forward;
+
             },
             (initialPos, initialZPos) => {transform.position = (Vector3) targetPosition + initialZPos;}
         );
@@ -70,8 +78,7 @@ public class CardAnimations
         return HwatooAnimation(
             transform, 
             duration,
-            targetPos,
-            (progress, initialPos, initialZPos) => 
+            (progress, initialPos, initialScale, initialZPos) => 
             {
                 if (progress < liftDurationRatio) 
                 {
@@ -107,7 +114,7 @@ public class CardAnimations
     )
     {
         yield return CombineHwatooAnimation(new IEnumerator[2] {
-            MoveAnimation(transform, targetPosition, easingOption, duration1),
+            MoveAnimation(transform, targetPosition, Vector3.one, easingOption, duration1),
             SlapAnimation(transform, targetPosition, duration2)
         });  
     }
@@ -124,8 +131,7 @@ public class CardAnimations
         return HwatooAnimation (
             transform,
             duration,
-            targetPosition,
-            (progress, initialPos, initialZPos) => {
+            (progress, initialPos, initialScale, initialZPos) => {
                 if (progress < 0.5f) {
                     transform.position = Vector3.Lerp(
                         initialPos,

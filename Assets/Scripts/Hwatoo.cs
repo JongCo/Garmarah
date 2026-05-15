@@ -74,10 +74,10 @@ public class Hwatoo : MonoBehaviour, IPointerDownHandler
         tcs.TrySetResult();
     }
 
-    public UniTask MoveTo(Vector2 targetPosition)
+    public UniTask MoveTo(Vector2 targetPosition, Vector2 targetScale)
     {
         _targetPosition = targetPosition;
-        return PlayAnimation(CardAnimations.MoveAnimation(transform, targetPosition, Preset.FastInSlowOut2, 0.7f));
+        return PlayAnimation(CardAnimations.MoveAnimation(transform, targetPosition, targetScale, Preset.FastInSlowOut2, 0.7f));
     }
 
     public UniTask PlayTo(Vector2 targetPosition)
@@ -105,6 +105,7 @@ public class Hwatoo : MonoBehaviour, IPointerDownHandler
 
         cardText.text = $"{hwatooData.month}월\n{hwatooData.cardName}";
         spriteRenderer.sprite = hwatooData.sprite;
+        _targetPosition = transform.position;
     }
 
     public void InitializeAsDummy()

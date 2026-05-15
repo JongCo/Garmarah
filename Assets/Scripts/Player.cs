@@ -7,7 +7,18 @@ public class Player : MonoBehaviour
 {
 
     private List<Hwatoo> hwatooOnHand = new();
-    private List<Hwatoo> ownedHwatoos = new();
+    private List<Hwatoo> ownedHwatoos => gwangs.Concat(ddis).Concat(yeols).Concat(pis).ToList();
+
+    private List<Hwatoo> gwangs = new();
+    private List<Hwatoo> ddis = new();
+    private List<Hwatoo> yeols = new();
+    private List<Hwatoo> pis = new();
+
+    [SerializeField] private Transform gwangPivot;
+    [SerializeField] private Transform ddiPivot;
+    [SerializeField] private Transform yeolPivot;
+    [SerializeField] private Transform piPivot;
+
     [SerializeField] private bool isHuman;
     [SerializeField] private bool isBottomPlayer;
 
@@ -75,20 +86,43 @@ public class Player : MonoBehaviour
         }
     }
 
-    public async UniTask AddHwatooToOwned(IEnumerable<Hwatoo> hwatoo)
+    private List<Hwatoo> SelectOwnedHwatooListByType(Hwatoo hwatoo) 
     {
-        List<Hwatoo> cards = hwatoo.ToList();
+        switch (hwatoo.hwatooData.cardType)
+        {
+            case CardType.Gwang:
+                return gwangs;
+            case CardType.Yeol:
+                return yeols;
+            case CardType.DDi:
+                return ddis;
+            case CardType.Pi:
+            case CardType.SSangPi:
+                return pis;
+        }
 
-        foreach (var card in cards)
-            card.owner = this;
+        Debug.LogError("얻을 수 없는 타입의 OwnedHwatoo 리스트에 접근하였습니다.");
+        return null;
+    }
 
-        ownedHwatoos.AddRange(cards);
+    public async UniTask AddHwatooToOwned(IEnumerable<Hwatoo> hwatoos)
+    {
+        List<Hwatoo> hwatooList = hwatoos.ToList();
+
+        foreach (var hwatoo in hwatooList)
+        {
+            hwatoo.owner = this;
+            SelectOwnedHwatooListByType(hwatoo).Add(hwatoo);
+        }
+
+        // ownedHwatoos.AddRange(hwatooList);
         await MoveHwatooToOwned();
     }
 
     public async UniTask RemoveHwatooFromOwned(Hwatoo hwatoo)
     {
-        ownedHwatoos.Remove(hwatoo);
+        // ownedHwatoos.Remove(hwatoo);
+        SelectOwnedHwatooListByType(hwatoo).Remove(hwatoo);
         hwatoo.owner = null;
         await MoveHwatooToOwned();
     }
@@ -101,17 +135,27 @@ public class Player : MonoBehaviour
     {
         for (int i = 0; i < hwatooOnHand.Count; i++)
         {
-            hwatooOnHand[i].MoveTo((Vector2) transform.position + Vector2.right * (i + 1));
+            hwatooOnHand[i].MoveTo((Vector2) transform.position + Vector2.right * (i + 1), Vector2.one);
         }
     }
 
     private UniTask MoveHwatooToOwned()
     {
-        var tasks = new UniTask[ownedHwatoos.Count];
-        for (int i = 0; i < ownedHwatoos.Count; i++)
+        List<UniTask> tasks = new();
+        void ForEach(List<Hwatoo> e, Transform pivot)
         {
-            tasks[i] = ownedHwatoos[i].MoveTo((Vector2) ownedHwatooPivot.position + Vector2.right * (i + 1));
+            for (int i = 0; i < e.Count; i++)
+            {
+                e[i].zIndex = i;
+                tasks.Add(e[i].MoveTo( (Vector2) pivot.position + Vector2.right * i * 0.3f, Vector2.one*0.75f) );
+            }
         }
+
+        ForEach(gwangs, gwangPivot);
+        ForEach(ddis, ddiPivot);
+        ForEach(yeols, yeolPivot);
+        ForEach(pis, piPivot);
+        
         return UniTask.WhenAll(tasks);
     }
 }
