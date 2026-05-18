@@ -144,7 +144,7 @@ public class BoardManager : MonoBehaviour
             }
 
             Vector3 slotPos = field.GetSlotPosition(bombTargetMonth);
-            playContext.player.AddDummyCards(3);
+            playContext.player.AddDummyCards(2);
             await UniTask.WhenAll(bombCards.Select(c => c.PlayTo(slotPos)));
 
             playContext.isBomb = true;
