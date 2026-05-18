@@ -40,6 +40,7 @@ public class BoardManager : MonoBehaviour
     public void DealToPlayer(Player player) {
         Hwatoo card = deck.Draw();
         if (card == null) return;
+        card.interactable = true;
         player.AddHwatooToHand(card);
     }
 
@@ -64,6 +65,7 @@ public class BoardManager : MonoBehaviour
 
     public void Play(Hwatoo hwatoo)
     {
+        hwatoo.interactable = false;
         PlayHwatoo(hwatoo).Forget();
     }
 

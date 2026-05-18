@@ -54,7 +54,7 @@ public class Deck : MonoBehaviour
         if (cards.Count == 0) return null;
 
         Hwatoo top = cards[^1];
-        top.isReversed = false;
+        top.isReversed = false; // TODO : 상대방이 카드를 가져갈때 안보이게 하기
         cards.RemoveAt(cards.Count - 1);
         return top;
     }

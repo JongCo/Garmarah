@@ -16,7 +16,7 @@ public class Hwatoo : MonoBehaviour, IPointerDownHandler
     public HwatooData hwatooData {get; private set;}
     public Player owner { get; set; }
 
-    private bool interactable;
+    public bool interactable {get; set;}
     private bool _isReversed;
     public bool isReversed{
         get {return _isReversed;}
@@ -115,6 +115,8 @@ public class Hwatoo : MonoBehaviour, IPointerDownHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        if (!interactable) { return; }
+
         BoardManager.instance.Play(this);
     }
 }
