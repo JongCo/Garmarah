@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Cysharp.Threading.Tasks;
+using TMPro;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -25,6 +26,14 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform ownedHwatooPivot;
     [SerializeField] private Hwatoo dummyCardPrefab;
 
+    [SerializeField] private TMP_Text scoreText;
+
+    private bool isCheongDan = false;
+    private bool isHongDan = false;
+    private bool isChoDan = false;
+    private bool isGodori = false;
+
+    private TypoEffectUIController typoFX;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -34,6 +43,9 @@ public class Player : MonoBehaviour
         } else {
             BoardManager.instance.SetPlayerTop(this);
         }
+
+        // TODO : 좀더 예쁜 방법으로 참조하기
+        typoFX = FindObjectsByType<TypoEffectUIController>(FindObjectsInactive.Include)[0];
     }
 
     // Update is called once per frame
@@ -82,6 +94,7 @@ public class Player : MonoBehaviour
         {
             Hwatoo dummy = Instantiate(dummyCardPrefab);
             dummy.InitializeAsDummy();
+            dummy.interactable = true;
             AddHwatooToHand(dummy);
         }
     }
@@ -117,6 +130,23 @@ public class Player : MonoBehaviour
 
         // ownedHwatoos.AddRange(hwatooList);
         await MoveHwatooToOwned();
+        scoreText.text = ScoreCalculator.Cal(ownedHwatoos).ToString();
+
+        if (!isCheongDan && ScoreCalculator.CheckCheongDan(ddis))
+        {
+            isCheongDan = true;
+            await typoFX.PlayTypoEffect("청단", Color.blue);
+        }
+        if (!isHongDan && ScoreCalculator.CheckHongDan(ddis))
+        {
+            isHongDan = true;
+            await typoFX.PlayTypoEffect("홍단", Color.red);
+        }
+        if (!isChoDan && ScoreCalculator.CheckChoDan(ddis))
+        {
+            isChoDan = true;
+            await typoFX.PlayTypoEffect("초단", Color.brown);
+        }
     }
 
     public async UniTask RemoveHwatooFromOwned(Hwatoo hwatoo)
