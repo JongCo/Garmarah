@@ -120,10 +120,11 @@ public class BoardManager : MonoBehaviour
             if (gotFromHand.Length == 4) playContext.piTakeCount++;
             if (gotFromDeck.Length == 4) playContext.piTakeCount++;
 
-            if (field.CheckAllClear()) playContext.piTakeCount++;
 
             await playContext.player.AddHwatooToOwned(Enumerable.Concat(gotFromHand, gotFromDeck));
         }
+        
+        if (field.CheckAllClear()) playContext.piTakeCount++;
 
         for(int i = 0; i < playContext.piTakeCount; i++)
         {

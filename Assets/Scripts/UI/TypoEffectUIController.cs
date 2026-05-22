@@ -44,13 +44,13 @@ public class TypoEffectUIController : MonoBehaviour
         while (progress < duration)
         {
             float r = SingleAxisBezier.CubicBezier(Preset.FastInSlowOut2, progress/duration);
-            target.style.letterSpacing = new Length((1-r) * 100f, LengthUnit.Pixel);
+            target.style.letterSpacing = new Length(20 + (1-r) * 100f, LengthUnit.Pixel);
             bg.style.opacity = r;
             await UniTask.WaitForEndOfFrame();
             progress += Time.deltaTime;
         }
         bg.style.opacity = 1;
-        target.style.letterSpacing = new Length(0);
+        target.style.letterSpacing = new Length(20);
         
         progress = 0;
         duration = 0.7f;

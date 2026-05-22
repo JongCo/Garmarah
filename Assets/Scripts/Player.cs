@@ -147,6 +147,11 @@ public class Player : MonoBehaviour
             isChoDan = true;
             await typoFX.PlayTypoEffect("초단", Color.brown);
         }
+        if (!isGodori && ScoreCalculator.CheckGodori(yeols))
+        {
+            isGodori = true;
+            await typoFX.PlayTypoEffect("고도리", Color.orange);
+        }
     }
 
     public async UniTask RemoveHwatooFromOwned(Hwatoo hwatoo)
