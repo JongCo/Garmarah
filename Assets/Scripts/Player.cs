@@ -28,10 +28,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] private TMP_Text scoreText;
 
-    private bool isCheongDan = false;
-    private bool isHongDan = false;
-    private bool isChoDan = false;
-    private bool isGodori = false;
+    ScoreCalculator scoreCalculator = new();
 
     private TypoEffectUIController typoFX;
 
@@ -130,27 +127,10 @@ public class Player : MonoBehaviour
 
         // ownedHwatoos.AddRange(hwatooList);
         await MoveHwatooToOwned();
-        scoreText.text = ScoreCalculator.Cal(ownedHwatoos).ToString();
-
-        if (!isCheongDan && ScoreCalculator.CheckCheongDan(ddis))
+        scoreText.text = scoreCalculator.Cal(ownedHwatoos).ToString();
+        foreach(var (str, color) in scoreCalculator.DrainScoreEvent())
         {
-            isCheongDan = true;
-            await typoFX.PlayTypoEffect("청단", Color.blue);
-        }
-        if (!isHongDan && ScoreCalculator.CheckHongDan(ddis))
-        {
-            isHongDan = true;
-            await typoFX.PlayTypoEffect("홍단", Color.red);
-        }
-        if (!isChoDan && ScoreCalculator.CheckChoDan(ddis))
-        {
-            isChoDan = true;
-            await typoFX.PlayTypoEffect("초단", Color.brown);
-        }
-        if (!isGodori && ScoreCalculator.CheckGodori(yeols))
-        {
-            isGodori = true;
-            await typoFX.PlayTypoEffect("고도리", Color.orange);
+            await typoFX.PlayTypoEffect(str, color);
         }
     }
 
