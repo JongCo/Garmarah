@@ -125,9 +125,8 @@ public class Player : MonoBehaviour
             SelectOwnedHwatooListByType(hwatoo).Add(hwatoo);
         }
 
-        // ownedHwatoos.AddRange(hwatooList);
-        await MoveHwatooToOwned();
         scoreText.text = scoreCalculator.Cal(ownedHwatoos).ToString();
+        await MoveHwatooToOwned();
         foreach(var (str, color) in scoreCalculator.DrainScoreEvent())
         {
             await typoFX.PlayTypoEffect(str, color);
@@ -136,9 +135,9 @@ public class Player : MonoBehaviour
 
     public async UniTask RemoveHwatooFromOwned(Hwatoo hwatoo)
     {
-        // ownedHwatoos.Remove(hwatoo);
         SelectOwnedHwatooListByType(hwatoo).Remove(hwatoo);
         hwatoo.owner = null;
+        scoreText.text = scoreCalculator.Cal(ownedHwatoos).ToString();
         await MoveHwatooToOwned();
     }
 
