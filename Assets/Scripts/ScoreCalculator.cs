@@ -13,6 +13,8 @@ public class ScoreCalculator
     bool isChoDan = false;
     bool isGodori = false;
 
+    int beforeGwangLevel = 0;
+
     private List<(string, Color)> scoreEvent = new();
 
     public List<(string, Color)> DrainScoreEvent()
@@ -38,6 +40,20 @@ public class ScoreCalculator
         }
 
         // TODO : 이벤트 추가
+        if (beforeGwangLevel != 3 && groupedHwatoos[CardType.Gwang].Count == 3)
+        {
+            scoreEvent.Add(("三광", Color.cyan));
+        }
+        if (beforeGwangLevel != 4 && groupedHwatoos[CardType.Gwang].Count == 4)
+        {
+            scoreEvent.Add(("四광", Color.salmon));
+        }
+        if (beforeGwangLevel != 5 && groupedHwatoos[CardType.Gwang].Count == 5)
+        {
+            scoreEvent.Add(("五광", Color.hotPink));
+        }
+        beforeGwangLevel = groupedHwatoos[CardType.Gwang].Count;
+
         if (!isCheongDan && CheckCheongDan(groupedHwatoos[CardType.DDi])) {
             isCheongDan = true;
             scoreEvent.Add(("청단", Color.blue));

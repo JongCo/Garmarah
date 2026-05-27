@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using JongCo.Easing;
 using UnityEngine;
@@ -25,10 +27,12 @@ public class TypoEffectUIController : MonoBehaviour
         uiRegisterCallbackHandler = (panelRenderer, root) =>
         {
             Label effectLabel = root.Q<Label>("EffectLabel");
+            Label effectLabelBlur = root.Q<Label>("EffectLabelBlur");
             VisualElement bg = root.Q<VisualElement>("ScreenElement");
             effectLabel.text = text;
+            effectLabelBlur.text = text;
             effectLabel.style.color = color;
-            TypeAnimation(effectLabel, bg).Forget();
+            TypeAnimation(new Label[] {effectLabel,effectLabelBlur}, bg).Forget();
         };
 
         uiRenderer.RegisterUIReloadCallback(uiRegisterCallbackHandler);
@@ -37,26 +41,37 @@ public class TypoEffectUIController : MonoBehaviour
         return tcs.Task;
     }
 
-    private async UniTask TypeAnimation(Label target, VisualElement bg)
+    private async UniTask TypeAnimation(IEnumerable<Label> target, VisualElement bg)
     {
         float progress = 0;
-        float duration = 1.5f;
+        float duration = 1.2f;
         while (progress < duration)
         {
             float r = SingleAxisBezier.CubicBezier(Preset.FastInSlowOut2, progress/duration);
-            target.style.letterSpacing = new Length(20 + (1-r) * 100f, LengthUnit.Pixel);
+            foreach(Label label in target)
+            {
+                label.style.letterSpacing = new Length(20 + (1-r) * 100f, LengthUnit.Pixel);
+                label.style.opacity = r;
+            }
             bg.style.opacity = r;
             await UniTask.WaitForEndOfFrame();
             progress += Time.deltaTime;
         }
         bg.style.opacity = 1;
-        target.style.letterSpacing = new Length(20);
+        foreach(Label label in target)
+        {
+            label.style.letterSpacing = new Length(20);
+        }
         
         progress = 0;
-        duration = 0.7f;
+        duration = 0.5f;
         while (progress < duration)
         {
             float r = progress / duration;
+            foreach(Label label in target)
+            {
+                label.style.opacity = 1-r;
+            }
             bg.style.opacity = 1-r;
             await UniTask.WaitForEndOfFrame();
             progress += Time.deltaTime;
